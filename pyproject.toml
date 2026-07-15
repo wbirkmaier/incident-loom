@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Evidence-first incident timeline and postmortem drafting tool"
 readme = "README.md"
 authors = [
-    { name = "Wil Birkmaier", email = "wil@birkmaier.org" }
+    { name = "Wil Birkmaier" }
 ]
 license = "Apache-2.0"
 requires-python = ">=3.12"
