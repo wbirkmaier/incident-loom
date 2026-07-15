@@ -6,7 +6,7 @@ IncidentLoom had a deterministic summary path, but it still coupled summarizatio
 
 - added a summary-provider adapter interface
 - implemented the deterministic `none` provider as the shipped path
-- added explicit placeholder adapters for `ollama` and `bedrock`
+- added explicit future provider stubs for `ollama` and `bedrock`
 
 ## Important decisions
 
