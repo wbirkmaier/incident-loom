@@ -5,11 +5,11 @@ from typing import Annotated
 
 import typer
 
+from incident_loom.adapters import get_summary_provider
 from incident_loom.exceptions import IncidentLoomError
 from incident_loom.fixtures import load_event_bundle
 from incident_loom.models import EventBundle
 from incident_loom.rendering import render_markdown
-from incident_loom.summarize import summarize_timeline
 from incident_loom.timeline import build_timeline
 
 app = typer.Typer(
@@ -109,7 +109,7 @@ def summarize(
 ) -> None:
     try:
         timeline_events = build_timeline(load_event_bundle(fixtures))
-        summary = summarize_timeline(timeline_events, provider)
+        summary = get_summary_provider(provider).summarize(timeline_events)
     except IncidentLoomError as error:
         raise typer.Exit(code=error.exit_code) from error
 

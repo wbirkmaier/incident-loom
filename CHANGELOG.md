@@ -6,3 +6,4 @@
 - Added fixture-backed event ingestion and deterministic timeline generation.
 - Added Markdown rendering for normalized incident timelines.
 - Added deterministic summary generation through the `none` provider.
+- Added summary provider adapters for deterministic and future remote providers.
