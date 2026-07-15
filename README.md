@@ -27,4 +27,9 @@ IncidentLoom turns scattered incident evidence into a deterministic timeline bef
 
 ## Status
 
-Repository scaffolding and CLI baseline are in place. Event normalization and timeline slices land next.
+```bash
+uv run incident-loom ingest tests/fixtures/incident-evidence
+uv run incident-loom timeline --fixtures tests/fixtures/incident-evidence
+```
+
+The current slice ingests sanitized fixture evidence and emits a deterministic JSON timeline. Rendering and summarization land in later slices.
