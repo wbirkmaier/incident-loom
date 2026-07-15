@@ -9,6 +9,7 @@ from incident_loom.exceptions import IncidentLoomError
 from incident_loom.fixtures import load_event_bundle
 from incident_loom.models import EventBundle
 from incident_loom.rendering import render_markdown
+from incident_loom.summarize import summarize_timeline
 from incident_loom.timeline import build_timeline
 
 app = typer.Typer(
@@ -88,6 +89,31 @@ def render(
         raise typer.Exit(code=error.exit_code) from error
 
     typer.echo(render_markdown(timeline_events))
+
+
+@app.command("summarize")
+def summarize(
+    fixtures: Annotated[
+        Path,
+        typer.Option(
+            "--fixtures",
+            exists=True,
+            readable=True,
+            file_okay=False,
+            dir_okay=True,
+        ),
+    ],
+    provider: Annotated[
+        str, typer.Option("--provider", help="Only 'none' is currently supported.")
+    ] = "none",
+) -> None:
+    try:
+        timeline_events = build_timeline(load_event_bundle(fixtures))
+        summary = summarize_timeline(timeline_events, provider)
+    except IncidentLoomError as error:
+        raise typer.Exit(code=error.exit_code) from error
+
+    typer.echo(summary.model_dump_json(indent=2))
 
 
 def main(argv: Annotated[list[str] | None, typer.Argument(hidden=True)] = None) -> None:

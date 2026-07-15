@@ -1,0 +1,12 @@
+{
+  "provider": "none",
+  "observations": [
+    "Timeline contains 3 normalized events between 2026-07-14T17:58:00Z and 2026-07-14T18:00:00Z.",
+    "Sources observed: github, kubernetes, prometheus."
+  ],
+  "evidence_ids": [
+    "github-note-1",
+    "k8s-event-1",
+    "prom-alert-1"
+  ]
+}
