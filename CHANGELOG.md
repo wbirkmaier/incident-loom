@@ -7,3 +7,4 @@
 - Added Markdown rendering for normalized incident timelines.
 - Added deterministic summary generation through the `none` provider.
 - Added summary provider adapters for deterministic and future remote providers.
+- Added deterministic postmortem draft rendering from timeline evidence.
