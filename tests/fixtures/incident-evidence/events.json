@@ -1,0 +1,33 @@
+{
+  "events": [
+    {
+      "timestamp": "2026-07-14T18:00:00Z",
+      "source": "prometheus",
+      "category": "alert",
+      "message": "payments-api latency above threshold",
+      "evidence_id": "prom-alert-1",
+      "source_ref": "prometheus-alerts/payments-latency",
+      "confidence": "observed",
+      "resource": "Deployment/payments/api"
+    },
+    {
+      "timestamp": "2026-07-14T17:58:00Z",
+      "source": "github",
+      "category": "human-note",
+      "message": "Investigating elevated 5xx responses in payments",
+      "evidence_id": "github-note-1",
+      "source_ref": "issue-comment/1",
+      "confidence": "observed"
+    },
+    {
+      "timestamp": "2026-07-14T17:59:30Z",
+      "source": "kubernetes",
+      "category": "readiness-failure",
+      "message": "Readiness probe failed: HTTP probe failed with statuscode: 503",
+      "evidence_id": "k8s-event-1",
+      "source_ref": "Event/payments/api-7786f8dd7b-mlwzg",
+      "confidence": "observed",
+      "resource": "Pod/payments/api-7786f8dd7b-mlwzg"
+    }
+  ]
+}
