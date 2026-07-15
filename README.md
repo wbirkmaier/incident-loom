@@ -35,3 +35,5 @@ uv run incident-loom summarize --fixtures tests/fixtures/incident-evidence --pro
 ```
 
 The current slice ingests sanitized fixture evidence, emits a deterministic JSON timeline, renders Markdown from the normalized timeline, and generates a deterministic summary through the `none` provider.
+
+Provider adapters for `ollama` and `bedrock` are present as explicit boundaries but are not implemented in this cycle.
