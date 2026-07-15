@@ -8,6 +8,7 @@ import typer
 from incident_loom.exceptions import IncidentLoomError
 from incident_loom.fixtures import load_event_bundle
 from incident_loom.models import EventBundle
+from incident_loom.rendering import render_markdown
 from incident_loom.timeline import build_timeline
 
 app = typer.Typer(
@@ -61,6 +62,32 @@ def timeline(
         raise typer.Exit(code=error.exit_code) from error
 
     typer.echo(EventBundle(events=timeline_events).model_dump_json(indent=2))
+
+
+@app.command("render")
+def render(
+    fixtures: Annotated[
+        Path,
+        typer.Option(
+            "--fixtures",
+            exists=True,
+            readable=True,
+            file_okay=False,
+            dir_okay=True,
+        ),
+    ],
+    output_format: Annotated[
+        str, typer.Option("--format", help="Only 'markdown' is currently supported.")
+    ] = "markdown",
+) -> None:
+    if output_format != "markdown":
+        raise typer.Exit(code=2)
+    try:
+        timeline_events = build_timeline(load_event_bundle(fixtures))
+    except IncidentLoomError as error:
+        raise typer.Exit(code=error.exit_code) from error
+
+    typer.echo(render_markdown(timeline_events))
 
 
 def main(argv: Annotated[list[str] | None, typer.Argument(hidden=True)] = None) -> None:

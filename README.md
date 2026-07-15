@@ -30,6 +30,7 @@ IncidentLoom turns scattered incident evidence into a deterministic timeline bef
 ```bash
 uv run incident-loom ingest tests/fixtures/incident-evidence
 uv run incident-loom timeline --fixtures tests/fixtures/incident-evidence
+uv run incident-loom render --fixtures tests/fixtures/incident-evidence --format markdown
 ```
 
-The current slice ingests sanitized fixture evidence and emits a deterministic JSON timeline. Rendering and summarization land in later slices.
+The current slice ingests sanitized fixture evidence, emits a deterministic JSON timeline, and renders Markdown from the normalized timeline. Summarization lands in later slices.
